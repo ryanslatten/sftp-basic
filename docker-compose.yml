@@ -1,0 +1,13 @@
+services:
+  sftp:
+    image: atmoz/sftp:latest
+    container_name: sftp-test
+    ports:
+      - "${SFTP_PORT:-2222}:22"
+    volumes:
+      - ./data:/home/${SFTP_USER:-testuser}/upload
+      - ./keys/ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key:ro
+      - ./keys/ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key:ro
+      - ./keys/testuser.pub:/home/${SFTP_USER:-testuser}/.ssh/keys/testuser.pub:ro
+    command: "${SFTP_USER:-testuser}:${SFTP_PASS:-testpass}:1001"
+    restart: unless-stopped
