@@ -21,10 +21,6 @@ That's it. Connect with:
 ### Test it
 
 ```bash
-# Password auth (simplest)
-sftp -oPort=2222 testuser@localhost
-
-# Key auth
 sftp -i ./keys/testuser -oPort=2222 testuser@localhost
 ```
 
