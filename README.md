@@ -1,6 +1,6 @@
 # SFTP Test Server
 
-A ready-to-go SFTP server in Docker — clone, start, connect.
+A ready-to-go SFTP server in Docker.
 
 ## Quick Start
 
@@ -39,8 +39,6 @@ Then restart: `docker compose up -d`
 
 ## Regenerate Keys
 
-Keys are committed for convenience so the server works immediately. To regenerate:
-
 ```bash
 rm -rf keys/
 ./setup.sh
@@ -54,19 +52,8 @@ docker compose up -d
 # Stop the server
 docker compose down
 
-# Full reset (removes keys, uploaded data, and volumes)
 docker compose down -v
 rm -rf keys/ data/
-ssh-keygen -R "[localhost]:2222"  # Clear old host key from known_hosts
+ssh-keygen -R "[localhost]:2222"
 ./setup.sh
-```
-
-## Project Structure
-
-```
-.env                   # Server configuration (user, pass, port)
-docker-compose.yml     # Container definition
-setup.sh               # Key generation script (idempotent)
-data/                  # Uploaded files appear here
-keys/                  # SSH host + client keys
 ```
