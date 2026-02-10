@@ -5,6 +5,7 @@ A ready-to-go SFTP server in Docker — clone, start, connect.
 ## Quick Start
 
 ```bash
+./setup.sh # To generate keys and data directory
 docker compose up -d
 ```
 
