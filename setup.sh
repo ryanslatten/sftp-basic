@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# Create directories
 mkdir -p keys data
+chown -R $(id -u):$(id -g) keys data 2>/dev/null || true
 
 # Generate host keys only if they don't already exist
 if [ ! -f keys/ssh_host_ed25519_key ]; then
@@ -21,9 +21,10 @@ else
   echo "Client key already exists, skipping."
 fi
 
-# Set proper permissions
 chmod 600 keys/ssh_host_ed25519_key keys/ssh_host_rsa_key keys/testuser
 chmod 644 keys/ssh_host_ed25519_key.pub keys/ssh_host_rsa_key.pub keys/testuser.pub
+chown -R $(id -u):$(id -g) keys 2>/dev/null || true
+chmod 755 data
 
 # Load .env defaults
 SFTP_USER="${SFTP_USER:-testuser}"

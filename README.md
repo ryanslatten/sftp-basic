@@ -43,6 +43,7 @@ Keys are committed for convenience so the server works immediately. To regenerat
 ```bash
 rm -rf keys/
 ./setup.sh
+ssh-keygen -R "[localhost]:2222"  # Clear old host key from known_hosts
 docker compose up -d
 ```
 
@@ -55,6 +56,7 @@ docker compose down
 # Full reset (removes keys, uploaded data, and volumes)
 docker compose down -v
 rm -rf keys/ data/
+ssh-keygen -R "[localhost]:2222"  # Clear old host key from known_hosts
 ./setup.sh
 ```
 
